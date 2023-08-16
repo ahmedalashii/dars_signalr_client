@@ -205,7 +205,7 @@ class HubConnection {
       _resetTimeoutPeriod();
       _resetKeepAliveInterval();
 
-      await _handshakeCompleter!.future;
+      await _handshakeCompleter?.future;
 
       // It's important to check the stopDuringStartError instead of just relying on the handshakePromise
       // being rejected on close, because this continuation can run after both the handshake completed successfully
@@ -824,7 +824,7 @@ class HubConnection {
         _callbacks;
     _callbacks = {};
 
-    callbacks.forEach((_, value) => {value(null, error)});
+    callbacks.forEach((_, value) => value(null, error));
   }
 
   void _cleanupPingTimer() {
